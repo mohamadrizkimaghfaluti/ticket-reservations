@@ -1,0 +1,21 @@
+*CREATE(POST): http://localhost:8080/ticket-reservations/create
+{
+	"cityCode" : "",
+	"cityName" : "",
+	"createdBy" : ""
+}
+
+*LIST(GET): http://localhost:8080/ticket-reservations/list
+
+*UPDATE(PUT): http://localhost:8080/ticket-reservations/update
+{
+    "cityId" : "",
+	"cityCode" : "",
+	"cityName" : "",
+    "activeStatus" : "",
+    "lastUpdatedBy" : ""
+}
+
+*DELETE(DELETE): http://localhost:8080/ticket-reservations/delete/{cityId}
+
+*searchCityByName(GET): http://localhost:8080/ticket-reservations/searchCityByName/{%name%}
