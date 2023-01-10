@@ -1,5 +1,6 @@
 package com.java.ticketreservations.service.impl;
 
+import com.java.ticketreservations.common.Commons;
 import com.java.ticketreservations.common.Constants;
 import com.java.ticketreservations.dto.city.CityRequestDto;
 import com.java.ticketreservations.dto.city.CityResponseDto;
@@ -23,7 +24,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityResponseDto create(CityRequestDto requestDto) throws Exception {
         this.checkCityCode(requestDto.getCityCode(), requestDto.getCityId());
-        String cityId = this.generateId(requestDto.getCityId());
+        String cityId = Commons.generateId(requestDto.getCityId());
         CityResponseDto responseDto = buildModelFromRequest(Constants.CREATE
                 , cityId, requestDto);
         return responseDto;
@@ -99,7 +100,7 @@ public class CityServiceImpl implements CityService {
         if (MODE_TYPE.equals(Constants.CREATE)){
             city.setActiveStatus(Constants.ACTIVE_STATUS);
             city.setCreatedBy(requestDto.getCreatedBy());
-            city.setCreatedDate(this.getToday());
+            city.setCreatedDate(Commons.getToday());
         }
         if (MODE_TYPE.equals(Constants.UPDATE)){
             city = modeUpdateCity(cityId, requestDto);
@@ -120,7 +121,7 @@ public class CityServiceImpl implements CityService {
         Character status = checkStatusActive(requestDto.getActiveStatus());
         city.setActiveStatus(status);
         city.setLastUpdatedBy(requestDto.getLastUpdatedBy());
-        city.setLastUpdateDate(this.getToday());
+        city.setLastUpdateDate(Commons.getToday());
         city.setCreatedBy(createdBy);
         city.setCreatedDate(createdDate);
         return city;
@@ -151,16 +152,4 @@ public class CityServiceImpl implements CityService {
         return responseDto;
     }
 
-    private String generateId(String cityId) {
-        String id = null;
-        if (cityId == null){
-            id = UUID.randomUUID().toString();
-        }
-        return id;
-    }
-
-    private LocalDate getToday(){
-        LocalDate today = LocalDate.now();
-        return today;
-    }
 }
