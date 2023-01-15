@@ -1,0 +1,22 @@
+*CREATE(POST): http://localhost:8080/ticket-reservations/categories/create
+{
+	"categoryCode" : "", (String)
+    "categoryName" : "", (String)
+    "categoryDescription" : "", (String)
+    "createdBy" : "" (String)
+}
+
+*LIST(GET): http://localhost:8080/ticket-reservations/categories/list
+
+*UPDATE(PUT): http://localhost:8080/ticket-reservations/categories/update/{categoriesId}
+{
+    "categoryCode" : "", (String)
+    "categoryName" : "", (String)
+    "categoryDescription" : "", (String)
+    "activeStatus": "", (Char)
+    "lastUpdatedBy": "" (String)
+}
+
+*DELETE(DELETE): http://localhost:8080/ticket-reservations/categories/delete/{categoriesId}
+
+*VIEW(GET): http://localhost:8080/ticket-reservations/categories/view/{categoriesId}
