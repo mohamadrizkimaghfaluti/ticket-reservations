@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class CityServiceImpl implements CityService {
@@ -118,25 +117,13 @@ public class CityServiceImpl implements CityService {
         LocalDate createdDate = cityList.get().getCreatedDate();
 
         City city = new City();
-        Character status = checkStatusActive(requestDto.getActiveStatus());
+        Character status = Commons.checkStatusActive(requestDto.getActiveStatus());
         city.setActiveStatus(status);
         city.setLastUpdatedBy(requestDto.getLastUpdatedBy());
         city.setLastUpdateDate(Commons.getToday());
         city.setCreatedBy(createdBy);
         city.setCreatedDate(createdDate);
         return city;
-    }
-
-    private Character checkStatusActive(Character activeStatus) throws Exception {
-        Character status;
-        if (activeStatus.equals(Constants.ACTIVE_STATUS)){
-            status = Constants.ACTIVE_STATUS;
-        } else if (activeStatus.equals(Constants.INACTIVE_STATUS)){
-            status = Constants.INACTIVE_STATUS;
-        } else {
-            throw new Exception("Writing 'Active Status' is Incorrect");
-        }
-        return status;
     }
 
     private CityResponseDto buildResponseFromModel(City city) {
